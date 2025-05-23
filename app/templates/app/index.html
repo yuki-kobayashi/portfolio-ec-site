@@ -1,0 +1,137 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+
+{% block content %}
+<!-- カルーセル -->
+<div class="container">
+    <div id="customCarousel" class="carousel slide mb-3" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-title">{{ carousel_title.title }}</div>
+        <div class="carousel-indicators">
+            {% for item in carousel_data %}
+                <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+                        {% if forloop.first %}class="active" aria-current="true"{% endif %}
+                        aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+
+        <div class="carousel-inner w-100">
+            {% for item in carousel_data %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a href="{% url 'product' item.slug %}" class="flex-shrink-0">
+                            <img src="{{ item.image.url }}" class="d-block img-fluid" alt="{{ item.title }}">
+                        </a>
+                        <div class="ms-3">
+                            <h5 class="mb-2">{{ item.title }}</h5>
+                            <p class="text-danger fw-bold">{{ item.price|intcomma }}円</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row gx-0">
+        <!-- 検索フォーム -->
+        <div class="col-lg-3 pe-lg-3">
+            <div class="card p-3 my-5 search-form">
+                <h5 class="mb-3">商品検索</h5>
+                <form method="GET" action="{% url 'search' %}">
+                    <div class="mb-3">
+                        <label for="category" class="form-label">カテゴリー</label>
+                        <select id="category" name="category" class="form-select">
+                            <option value="">選択してください</option>
+                            {% for category in categories %}
+                                <option value="{{ category.category }}">{{ category.category }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">価格帯(円)</label>
+                        <div class="input-group">
+                            <input type="number" name="min_price" class="form-control" placeholder="最低価格">
+                            <span class="input-group-text">〜</span>
+                            <input type="number" name="max_price" class="form-control" placeholder="最高価格">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="keyword" class="form-label">キーワード</label>
+                        <input type="text" id="keyword" name="keyword" class="form-control" placeholder="商品名">
+                    </div>
+                    {% if user.is_authenticated %}
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="only_favorites" name="only_favorites" value="on">
+                            <label class="form-check-label" for="only_favorites">お気に入りのみ表示</label>
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-dark w-100">
+                        <i class="fas fa-search"></i> 検索
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 商品一覧 -->
+        <div class="col-lg-9 ps-3">
+            <div class="text-center">
+                <div class="product-list">商品一覧</div>
+                <div class="row" id="product-container">
+                    {% for item in item_data %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card img-thumbnail itemlist mb-3 position-relative">
+                                <div class="category-label">{{ item.category }}</div>
+                                <a href="{% url 'product' item.slug %}" class="stretched-link">
+                                    <img src="{{ item.image.url }}" alt="" class="card-img-top card-thum">
+                                </a>
+                                <div class="card-body text-center px-2 py-3">
+                                    <h5 class="font-weight-bold">{{ item.title }}</h5>
+                                    <h4 class="font-weight-bold">{{ item.price|intcomma }}円</h4>
+                                    <!-- 商品詳細ボタン -->
+                                    <div class="text-center mt-2">
+                                        <button type="button" class="btn btn-primary btn-sm product-detail-button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#productModal"
+                                                data-title="{{ item.title }}"
+                                                data-category="{{ item.category }}"
+                                                data-price="{{ item.price|intcomma }}"
+                                                data-description="{{ item.description }}"
+                                                data-image="{{ item.image.url }}">
+                                            商品詳細
+                                        </button>
+                                    </div>
+                                    <!-- お気に入りボタン -->
+                                    {% if user.is_authenticated %}
+                                        <button class="btn btn-outline-danger btn-sm favorite-button"
+                                                data-slug="{{ item.slug }}"
+                                                data-favorited="{{ item.is_favorited|yesno:'true,false' }}">
+                                            {% if item.is_favorited %}
+                                                ❤️ お気に入り済み
+                                            {% else %}
+                                                🤍 お気に入り
+                                            {% endif %}
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'app/modal.html' %}
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+
+{% block content %}
+<div class="my-5">
+    <div class="row product">
+        <div class="col-md-6 mb-4 text-center">
+            <img src="{{ item_data.image.url }}" alt="商品画像" class="img-fluid" id="productImage" 
+                data-bs-toggle="modal" data-bs-target="#imageModal" data-image="{{ item_data.image.url }}">
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body px-2 py-1">
+                    <div class="p-4">
+                        <h3>{{ item_data.title }}</h3>
+                        <p class="mb-3">{{ item_data.category }}</p>
+                        <hr>
+                        <p>価格：<span class="text-danger font-weight-bold">{{ item_data.price|intcomma }}円</span></p>
+                        <p class="font-weight-bold">商品説明：</p>
+                        <p>{{ item_data.description|linebreaksbr }}</p>
+                        <div class="d-flex align-items-center gap-2">
+                            <a href="{% url 'additem' item_data.slug %}" class="btn btn-success">カートに入れる</a>
+                            {% if user.is_authenticated %}
+                                <button class="btn btn-outline-danger product-favorite-button"
+                                        data-slug="{{ item_data.slug }}"
+                                        data-favorited="{{ item_data.is_favorited|yesno:'true,false' }}">
+                                    {% if item_data.is_favorited %}
+                                        ❤️ お気に入り済み
+                                    {% else %}
+                                        🤍 お気に入り
+                                    {% endif %}
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% include 'app/modal_image.html' %}
+
+{% endblock %}

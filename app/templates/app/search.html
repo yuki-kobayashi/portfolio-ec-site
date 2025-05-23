@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+<div class="col-lg-9 mx-auto">
+    <div class="text-center">
+        <div class="product-list">商品検索結果</div>
+        {% if search_item_data %}
+            <div class="row">
+                {% for item in search_item_data %}
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card img-thumbnail itemlist mb-3 position-relative">
+                            <div class="category-label">{{ item.category }}</div>
+                            <a href="{% url 'product' item.slug %}" class="stretched-link">
+                                <img src="{{ item.image.url }}" alt="" class="card-img-top card-thum">
+                            </a>
+                            <div class="card-body text-center px-2 py-3">
+                                <h5 class="font-weight-bold">{{ item.title }}</h5>
+                                <h4 class="font-weight-bold">{{ item.price|intcomma }}円</h4>
+                                <!-- 商品詳細ボタン -->
+                                <div class="text-center mt-2">
+                                    <button type="button" class="btn btn-primary btn-sm product-detail-button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#productModal"
+                                            data-title="{{ item.title }}"
+                                            data-category="{{ item.category }}"
+                                            data-price="{{ item.price|intcomma }}"
+                                            data-description="{{ item.description }}"
+                                            data-image="{{ item.image.url }}">
+                                        商品詳細
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>該当する商品は見つかりませんでした。</p>
+        {% endif %}
+    </div>
+</div>
+
+{% include 'app/modal.html' %}
+
+{% endblock %}

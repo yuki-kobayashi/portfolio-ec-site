@@ -1,0 +1,298 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f1f1f1;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+p.item-name {
+    font-weight: bold;
+}
+
+.card-profile {
+    width: 90%;
+    width: 100%;
+    overflow-x: auto;
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.button {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    font-weight: bold;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+}
+
+.form_wrap {
+    display: grid;
+    gap: 16px;
+}
+
+.form_wrap-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.card-auth {
+    max-width: 90%;
+    width: 100%;
+    margin: 5% auto;
+    padding: 20px;
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.form-auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.form-label-group {
+    margin-bottom: 1rem;
+}
+
+.form-label-group input {
+    border-radius: 2rem;
+}
+
+.product-list {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.itemlist img {
+    height: 150px;
+    object-fit: contain;
+}
+
+.product img {
+    height: 350px;
+    object-fit: contain;
+}
+
+.order img {
+    height: 100px;
+    object-fit: contain;
+}
+
+.order .col-md-9 {
+    margin-bottom: 20px;
+}
+
+.badge {
+    border-radius: 1.375rem;
+    color: #000;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+}
+
+.badge-danger {
+    color: #fff;
+    background-color: #f94322;
+}
+
+.custom-container {
+    max-width: 1400px;
+}
+
+/* プロフィールのスタイル */
+.profile_table {
+    width: 100%;
+    border: 1px solid #D1DBEB;
+    border-radius: 8px;
+    border-collapse: separate;
+    overflow: hidden;
+}
+
+.profile_table th,
+.profile_table td {
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.profile_table .header {
+    width: 200px;
+    padding: 16px 24px;
+    text-align: left;
+    background: #F1F5FA;
+}
+
+.profile_table .data {
+    padding: 16px 24px;
+}
+
+/* カルーセルのスタイル */
+#customCarousel {
+    background-color: #fff;
+    border: 1px solid rgb(0, 0, 0, 0.175);
+    border-radius: 6px;
+    margin: 40px auto 0;
+    height: 280px;
+    width: 100%;
+    max-width: 1350px;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: rgb(101, 99, 99);
+    opacity: 1;
+}
+
+.carousel-indicators .active {
+    background-color: #000;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(100%);
+}
+
+.carousel-caption {
+    color:#000;
+}
+
+.carousel-title {
+    font-size: 25px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+}
+
+.carousel-item img {
+    object-fit: contain;
+    max-height: 200px;
+    width: 200px;
+}
+
+/* 検索フォームのスタイル */
+.search-form {
+    margin-top: 37px;
+}
+
+.input-group .form-control {
+    min-width: 90px;
+    font-size: 14px;
+}
+
+.input-group-text {
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* 商品一覧のスタイル */
+.category-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* モーダルの画像スタイル */
+#expandedImage,
+#productModal .modal-body img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.product-detail-button,
+.add-to-cart-button {
+    position: relative;
+    z-index: 10;
+}
+
+/* 商品詳細の画像にマウスカーソルを合わせた際のカーソル変更 */
+#productImage {
+    cursor: pointer;
+}
+
+/* PC画面専用スタイル */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px !important;
+    }
+}
+
+/* スマホ画面専用スタイル */
+@media (max-width: 768px) {
+    #customCarousel {
+        margin: 0 auto; /* スマホでは上の余白を削除 */
+    }
+
+    .mb-5 {
+        margin-bottom: 0 !important; /* スマホではマージンを削除 */
+    }
+
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
+
+/* お気に入りボタンスタイル(商品一覧) */
+.favorite-button {
+    position: relative;
+    z-index: 10;
+    margin-top: 10px;
+}
+
+/* お気に入りボタンスタイル(商品詳細) */
+.product-favorite-button {
+        vertical-align: middle;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.375rem;
+}
