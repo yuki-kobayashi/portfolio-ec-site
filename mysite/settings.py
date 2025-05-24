@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-4vr51d(3dao!92at^groybukzf&@ba!q@1&5x(61injtpme$kz"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['portfolio-ec-site.onrender.com']
 
@@ -56,8 +56,11 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     # "allauth.account.middleware.AccountMiddleware",
 ]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ROOT_URLCONF = "mysite.urls"
 
@@ -127,8 +130,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, "app", "static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "app", "static")]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
