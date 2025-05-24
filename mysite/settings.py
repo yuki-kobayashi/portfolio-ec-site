@@ -127,11 +127,14 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'app', 'static'),
-]
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, "app", "static")]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+if os.environ.get("RENDER"):
+    ALLOWED_HOSTS.append("portfolio-ec-site.onrender.com")
+    DEBUG = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
