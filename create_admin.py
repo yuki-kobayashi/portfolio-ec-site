@@ -12,5 +12,10 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 # 存在しない場合だけスーパーユーザーを作成
-if not User.objects.filter(username="admin").exists():
-    User.objects.create_superuser("admin", "admin@example.com", "password")
+if not User.objects.filter(email="admin@ne.jp").exists():
+    User.objects.create_superuser(
+        email="admin@ne.jp",
+        password="n5wdf71qa",
+        first_name="Admin",
+        last_name="User"
+    )
