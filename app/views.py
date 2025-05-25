@@ -7,8 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from accounts.models import CustomUser
-from django.views.decorators.http import require_POST
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib.humanize.templatetags.humanize import intcomma
 from .models import Item, OrderItem, Order, Payment, CarouselTitle, Favorite
 
 
@@ -16,6 +15,9 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         # 商品一覧用のデータ
         item_data = list(Item.objects.all())
+        # カンマ付き価格を追加
+        for item in item_data:
+            item.formatted_price = intcomma(int(item.price))
         # カルーセル表示用のデータ
         carousel_data = Item.objects.filter(category="お菓子")
         carousel_title = CarouselTitle.objects.first()
@@ -32,6 +34,7 @@ class IndexView(View):
 
         context = {
             "item_data": item_data,
+
             "carousel_data": carousel_data,
             "carousel_title": carousel_title,
             "categories": categories,
