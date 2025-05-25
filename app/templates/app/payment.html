@@ -1,6 +1,6 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% load humanize %}
+{% load custom_filters %}
 
 {% block content %}
 <div class="my-5">
@@ -37,10 +37,10 @@
                             注文を確定する
                         </button>
                         <p class="item-name">注文内容</p>
-                        <p>商品の小計：{{ order.get_total|intcomma }}円</p>
+                        <p>商品の小計：{{ order.get_total|custom_price }}円</p>
                         <p>配送料：0円</p>
                         <hr>
-                        <p class="font-weight-bold text-danger">ご請求書金額：{{ order.get_total|intcomma }}円</p>
+                        <p class="font-weight-bold text-danger">ご請求書金額：{{ order.get_total|custom_price }}円</p>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,4 @@
 {% extends 'app/base.html' %}
-{% load humanize %}
 {% load custom_filters %}
 
 {% block content %}
@@ -105,7 +104,7 @@
                                                 data-bs-target="#productModal"
                                                 data-title="{{ item.title }}"
                                                 data-category="{{ item.category }}"
-                                                data-price="{{ item.price|intcomma }}"
+                                                data-price="{{ item.price|custom_price }}"
                                                 data-description="{{ item.description }}"
                                                 data-image="{{ item.image.url }}">
                                             商品詳細

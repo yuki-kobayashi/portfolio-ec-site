@@ -1,5 +1,5 @@
 {% extends 'app/base.html' %}
-{% load humanize %}
+{% load custom_filters %}
 
 {% block content %}
 
@@ -17,7 +17,7 @@
                             </a>
                             <div class="card-body text-center px-2 py-3">
                                 <h5 class="font-weight-bold">{{ item.title }}</h5>
-                                <h4 class="font-weight-bold">{{ item.price|intcomma }}円</h4>
+                                <h4 class="font-weight-bold">{{ item.price|custom_price }}円</h4>
                                 <!-- 商品詳細ボタン -->
                                 <div class="text-center mt-2">
                                     <button type="button" class="btn btn-primary btn-sm product-detail-button"
@@ -25,7 +25,7 @@
                                             data-bs-target="#productModal"
                                             data-title="{{ item.title }}"
                                             data-category="{{ item.category }}"
-                                            data-price="{{ item.price|intcomma }}"
+                                            data-price="{{ item.price|custom_price }}"
                                             data-description="{{ item.description }}"
                                             data-image="{{ item.image.url }}">
                                         商品詳細

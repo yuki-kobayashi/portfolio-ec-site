@@ -1,5 +1,5 @@
 {% extends 'app/base.html' %}
-{% load humanize %}
+{% load custom_filters %}
 
 {% block content %}
 <div class="my-5">
@@ -31,7 +31,7 @@
                             <p>
                                 価格：
                                 <span class="text-danger font-weight-bold">
-                                    {{ order_item.get_total_item_price|intcomma }}円
+                                    {{ order_item.get_total_item_price|custom_price }}円
                                 </span>
                             </p>
                         </div>
@@ -52,7 +52,7 @@
         <div class="card">
             <div class="card-body text-center px-2 py-3">
                 {% if order.get_total %}
-                    <p>小計：<span class="font-weight-bold">{{ order.get_total|intcomma }}</span>円</p>
+                    <p>小計：<span class="font-weight-bold">{{ order.get_total|custom_price }}</span>円</p>
                     <div class="mb-3">
                         <a href="{% url 'payment' %}" class="btn btn-warning">レジに進む</a>
                     </div>
