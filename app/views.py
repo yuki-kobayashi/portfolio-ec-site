@@ -28,6 +28,7 @@ class IndexView(View):
         # 各アイテムに is_favorited 属性を追加
         for item in item_data:
             item.is_favorited = item.id in favorite_items
+            item.price_type = type(item.price).__name__
 
         context = {
             "item_data": item_data,
