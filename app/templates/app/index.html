@@ -96,9 +96,7 @@
                                 </a>
                                 <div class="card-body text-center px-2 py-3">
                                     <h5 class="font-weight-bold">{{ item.title }}</h5>
-                                    <h4 class="font-weight-bold">{{ item.price|intcomma }}円</h4>
-                                    <p>元の値: {{ 1234567 }}</p>
-                                    <p>intcomma: {{ 1234567|intcomma }}</p>
+                                    <h4 class="font-weight-bold">{{ item.price|stringformat:",d" }}円</h4>
                                     <!-- 商品詳細ボタン -->
                                     <div class="text-center mt-2">
                                         <button type="button" class="btn btn-primary btn-sm product-detail-button"
