@@ -15,10 +15,6 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         # 商品一覧用のデータ
         item_data = list(Item.objects.all())
-        # カンマ付き価格を追加
-        for item in item_data:
-            print(f"[DEBUG] {item.title} price: {item.price} → {intcomma(int(item.price))}")
-            item.formatted_price = intcomma(int(item.price))
         # カルーセル表示用のデータ
         carousel_data = Item.objects.filter(category="お菓子")
         carousel_title = CarouselTitle.objects.first()
