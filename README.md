@@ -63,37 +63,38 @@ Pythonを扱えるようになろうと決意しました。
 - **JavaScriptとjQueryを併用**し、モーダルや非同期更新をスムーズに実装
 ```javascript
 // お気に入り切り替え
-    $(".favorite-button").on("click", function () {
-        const $button = $(this);
-        const slug = $button.data("slug");
-        const isFavorited = $button.data("favorited") === true;
-        // AJAXを用い、お気に入り切り替えを非同期で処理
-        $.ajax({
-            url: `/toggle-favorite/${slug}/`,
-            type: "POST",
-            headers: {
-                "X-CSRFToken": getCookie("csrftoken")
-            },
-            contentType: "application/json",
-            data: JSON.stringify({ favorited: !isFavorited }),
-            success: function (response) {
-                if (response.is_favorited) {
-                    $button.html("❤️ お気に入り済み")
-                           .removeClass("btn-outline-danger")
-                           .addClass("btn-danger")
-                           .data("favorited", true);
-                } else {
-                    $button.html("🤍 お気に入り")
-                           .removeClass("btn-danger")
-                           .addClass("btn-outline-danger")
-                           .data("favorited", false);
-                }
-            },
-            error: function () {
-                console.error("お気に入りの切り替えに失敗しました");
+$(".favorite-button").on("click", function () {
+    const $button = $(this);
+    const slug = $button.data("slug");
+    const isFavorited = $button.data("favorited") === true;
+    // AJAXを用い、お気に入り切り替えを非同期で処理
+    $.ajax({
+        url: `/toggle-favorite/${slug}/`,
+        type: "POST",
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        contentType: "application/json",
+        data: JSON.stringify({ favorited: !isFavorited }),
+        success: function (response) {
+            if (response.is_favorited) {
+                $button.html("❤️ お気に入り済み")
+                        .removeClass("btn-outline-danger")
+                        .addClass("btn-danger")
+                        .data("favorited", true);
+            } else {
+                $button.html("🤍 お気に入り")
+                        .removeClass("btn-danger")
+                        .addClass("btn-outline-danger")
+                        .data("favorited", false);
             }
-        });
+        },
+        error: function () {
+            console.error("お気に入りの切り替えに失敗しました");
+        }
     });
+});
+```
 
 
 - **バリデーションの強化**：パスワードに対して正規表現を使い、セキュリティを意識
