@@ -25,6 +25,13 @@ class SignupUserForm(SignupForm):
         if CustomUser.objects.filter(email=email).exists():
             raise forms.ValidationError("既に登録されているメールアドレスです。")
         return email
+    
+    # パスワードの入力制限
+    def clean_password1(self):
+        password = self.cleaned_data.get("password1")
+        if not re.match(r"^[a-zA-Z0-9]+$", password):
+            raise forms.ValidationError("パスワードは半角英数字のみで入力してください。")
+        return password
 
     # 登録処理
     def save(self, request):
