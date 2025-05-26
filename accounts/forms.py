@@ -2,6 +2,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from allauth.account.forms import SignupForm
 from django.contrib.auth import get_user_model
+import re
 
 
 CustomUser = get_user_model()
