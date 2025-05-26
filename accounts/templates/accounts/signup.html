@@ -28,6 +28,9 @@
                     </div>
                 {% endif %}
             </div>
+            <div class="form-label-group mb-3">
+                <small class="form-text text-danger">※ パスワードは8文字以上で入力してください。</small>
+            </div>
             <div class="form-label-group">
                 {% render_field form.password2 class='form-control' placeholder='パスワード(確認)' %}
                 {% if form.password2.errors %}
@@ -35,9 +38,6 @@
                         {{ form.password2.errors.0 }}
                     </div>
                 {% endif %}
-            </div>
-            <div class="form-label-group mb-3">
-                <small class="form-text text-danger">※ パスワードは8文字以上で入力してください。</small>
             </div>
             <div class="button mx-auto">
                 <button class="btn btn-lg btn-primary btn-block mx-auto" type="submit">サインアップ</button>
