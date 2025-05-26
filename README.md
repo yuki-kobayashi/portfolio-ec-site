@@ -95,6 +95,7 @@ $(".favorite-button").on("click", function () {
     });
 });
 ```
+
 - **バリデーションの強化**：パスワードに対して正規表現を使い、セキュリティを意識
 ```python
 class SignupUserForm(SignupForm):
