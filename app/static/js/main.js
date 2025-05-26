@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const $button = $(this);
         const slug = $button.data("slug");
         const isFavorited = $button.data("favorited") === true;
-
+        // AJAXを用い、お気に入り切り替えを非同期で処理
         $.ajax({
             url: `/toggle-favorite/${slug}/`,
             type: "POST",
