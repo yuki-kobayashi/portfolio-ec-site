@@ -27,7 +27,7 @@ Pythonを扱えるようになろうと決意しました。
 - Pythonを用いたWebサイトの開発経験を積む。
 - Pythonのフレームワークの扱いに慣れておく。(Djangoを利用)
 - スクラッチ開発によって、Djangoの基本的な構成、動作を知る。
-- Python3エンジニア認定資格の学習で得た知識を実装に取り入れることで、すぐに実務ができるスキルが備わっているということを企業にアピールする。
+- Python3エンジニア認定実践試験の資格を得た上で実践的なサイトを作成することで、実務ができるスキルが備わっているということを企業にアピールする。
 
 ---
 
@@ -46,7 +46,7 @@ Pythonを扱えるようになろうと決意しました。
 
 | 機能              | 説明 |
 |-------------------|------|
-| ユーザー登録・ログイン・ログアウト | `django-allauth` を使った認証機能 |
+| ユーザー登録・ログイン・ログアウト | django-allauthを使った認証機能 |
 | ユーザー情報表示 | 登録したユーザー情報の表示と編集 |
 | 商品検索  | 商品名、カテゴリー、価格、お気に入りで表示商品をフィルター |
 | 商品一覧表示      | モデルに登録した商品を一覧表示 |
@@ -61,6 +61,41 @@ Pythonを扱えるようになろうと決意しました。
 ## 💡 開発で工夫した点（アピールポイント）
 
 - **JavaScriptとjQueryを併用**し、モーダルや非同期更新をスムーズに実装
+```javascript
+// お気に入り切り替え
+    $(".favorite-button").on("click", function () {
+        const $button = $(this);
+        const slug = $button.data("slug");
+        const isFavorited = $button.data("favorited") === true;
+        // AJAXを用い、お気に入り切り替えを非同期で処理
+        $.ajax({
+            url: `/toggle-favorite/${slug}/`,
+            type: "POST",
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken")
+            },
+            contentType: "application/json",
+            data: JSON.stringify({ favorited: !isFavorited }),
+            success: function (response) {
+                if (response.is_favorited) {
+                    $button.html("❤️ お気に入り済み")
+                           .removeClass("btn-outline-danger")
+                           .addClass("btn-danger")
+                           .data("favorited", true);
+                } else {
+                    $button.html("🤍 お気に入り")
+                           .removeClass("btn-danger")
+                           .addClass("btn-outline-danger")
+                           .data("favorited", false);
+                }
+            },
+            error: function () {
+                console.error("お気に入りの切り替えに失敗しました");
+            }
+        });
+    });
+
+
 - **バリデーションの強化**：パスワードに対して正規表現を使い、セキュリティを意識
 - **エラー時のユーザー体験向上**：フォームエラーを分かりやすく表示
 - **Djangoのベストプラクティス**に基づいたフォルダ構成とクラスベースビュー
