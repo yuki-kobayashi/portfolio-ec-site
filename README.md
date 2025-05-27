@@ -15,7 +15,7 @@ Django + BootstrapによるシンプルなECサイトです。ユーザー登録
 - 安全性
 - サービスにあった場所で動く事
 
-そして、私自身扱えるバックエンド言語はPHPしかなかったため、機械学習分野に携わる可能性を考えたことや、自身のスキルを広げるためにも、
+そして、私自身扱えるバックエンド言語はPHPしかなかったため、将来機械学習分野に携わる可能性を考えたことや、自身のスキルを広げるためにも、
 Pythonを扱えるようになろうと決意しました。
 
 また、私自身コロナ禍において、直接お店まで買い物に行くことに対して抵抗を感じていた時期があり、Amazonや楽天などのECサイトを利用する場面が増えましたが、その経験からECサイトは生活を快適にしてくれるものという印象を持つことができ、私も誰かの生活を快適・豊かにできるようなものを作ってみたいという思いから、Python + ECサイトでポートフォリオを作成することに決めました。
@@ -39,6 +39,8 @@ Pythonを扱えるようになろうと決意しました。
 - デプロイ：Render
 - 認証：django-allauth
 - バージョン管理：GitHub
+- 画像ストレージ：AWS S3
+- 開発環境：Windows11 / VSCode
 
 ---
 
@@ -106,6 +108,32 @@ ECサイトに主に必要となる機能を考え、実装する。
 本ECサイトのエンティティ・リレーション構造は以下の通り。
 ![ER図](./ec_site_erd.png)
 
+
+5.コーディング
+- フロントエンド：HTML, CSS(Bootstrapを利用), JavaScript
+- バックエンド：Python(Django)
+- IDE：VSCode
+
+
+6.テスト工程
+
+単体テスト：
+- サインインでのユーザー登録
+- ユーザー情報の編集
+- ログイン・ログアウトなどの認証
+- カルーセルの動作
+- モーダルの動作
+- 検索処理の動作
+- お気に入りの動作
+- シッピングカート画面での商品の購入数の増減と削除
+- 注文確定の動作
+
+
+結合テスト：
+- 新規ユーザー登録〜ログイン〜商品購入までの一連の流れ
+- 商品一覧と商品詳細ページのお気に入りの連携
+- ログイン必須処理の動作確認
+- 注文処理時のデータ整合性確認
 
 ---
 
@@ -231,4 +259,22 @@ class SignupUserForm(SignupForm):
     </div>
 </div>
 ```
+- **AWSとの連携**：商品画像をAWS S3にアップロード・保存し、Webサイト上に表示。(本番環境では、下記をRenderの環境変数に設定することで動かしている。)
+```python
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME', 'ap-northeast-1')
+AWS_S3_CUSTOM_DOMAIN = os.getenv('AWS_S3_CUSTOM_DOMAIN', f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com")
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
+```
+
 ---
