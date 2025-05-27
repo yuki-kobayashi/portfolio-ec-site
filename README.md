@@ -111,7 +111,7 @@ ECサイトに主に必要となる機能を考え、実装する。
 
 ## 💪 開発で工夫した点（アピールポイント）
 
-- **JavaScriptとjQueryを併用**し、モーダル表示や非同期更新をスムーズに実装
+- **JavaScriptとjQueryを併用**し、モーダル表示や非同期更新をスムーズに実装。
 ```javascript
 // お気に入り切り替え(非同期更新)
 $(".favorite-button").on("click", function () {
@@ -146,7 +146,7 @@ $(".favorite-button").on("click", function () {
     });
 });
 ```
-- **バリデーションの強化**：パスワードに対して正規表現を使い、セキュリティを意識
+- **バリデーションの強化、およびエラー時のユーザー体験向上**：パスワードに対して正規表現を使い、セキュリティを意識。また、入力エラーに対して説明を表示することで、ユーザーが即座に問題を確認できるように対応。
 ```python
 class SignupUserForm(SignupForm):
     # オリジナルフォームのフィールド定義
@@ -175,7 +175,7 @@ class SignupUserForm(SignupForm):
         user.save()
         return user
 ```
-- **レスポンシブ対応**：Bootstrapを用い、スマホ画面でも整ったスタイルを実現
+- **レスポンシブ対応**：Bootstrapを用い、スマホ画面でも整ったスタイルを実現。
 ```html
 <!-- デバイス幅に応じて、商品カードの列数を調整 -->
 <div class="row" id="product-container">
@@ -231,39 +231,4 @@ class SignupUserForm(SignupForm):
     </div>
 </div>
 ```
-
-
-
-- **エラー時のユーザー体験向上**：フォームエラーを分かりやすく表示
-- **Djangoのベストプラクティス**に基づいたフォルダ構成とクラスベースビュー
-- **本番環境でのJavaScript不具合に対応**：ローカルとRender環境の違いに対応
-- **メール送信について**：ローカルとRender環境の違いに対応
-
 ---
-
-## 🚀 デプロイ先（Render）
-
-🔗 https://your-ec-site.onrender.com  
-※デモ用アカウント：`demo@example.com` / `demopassword`
-
----
-
-## 📸 画面イメージ
-
-※ 必要に応じて画像を貼ると好印象です（`img/ss1.png` など）
-
----
-
-## 📁 セットアップ方法（開発環境）
-
-```bash
-# 仮想環境を作成
-python -m venv env
-source env/bin/activate  # Windows: env\Scripts\activate
-
-# ライブラリをインストール
-pip install -r requirements.txt
-
-# マイグレーションと起動
-python manage.py migrate
-python manage.py runserver
