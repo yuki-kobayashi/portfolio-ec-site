@@ -109,7 +109,7 @@ ECサイトに主に必要となる機能を考え、実装する。
 
 ---
 
-## 💡 開発で工夫した点（アピールポイント）
+## 💪 開発で工夫した点（アピールポイント）
 
 - **JavaScriptとjQueryを併用**し、モーダル表示や非同期更新をスムーズに実装
 ```javascript
@@ -175,6 +175,65 @@ class SignupUserForm(SignupForm):
         user.save()
         return user
 ```
+- **レスポンシブ対応**：Bootstrapを用い、スマホ画面でも整ったスタイルを実現
+```html
+<!-- デバイス幅に応じて、商品カードの列数を調整 -->
+<div class="row" id="product-container">
+    {% for item in item_data %}
+        <div class="col-lg-3 col-md-6">
+            <div class="card img-thumbnail itemlist mb-3 position-relative">
+                <div class="category-label">{{ item.category }}</div>
+                <a href="{% url 'product' item.slug %}" class="stretched-link">
+                    <img src="{{ item.image.url }}" alt="" class="card-img-top card-thum">
+                </a>
+                <div class="card-body text-center px-2 py-3">
+                    <h5 class="font-weight-bold">{{ item.title }}</h5>
+                    <h4 class="font-weight-bold">{{ item.price|custom_price }}円</h4>
+                    <!-- 商品詳細ボタン -->
+                    <div class="text-center mt-2">
+                        <button type="button" class="btn btn-primary btn-sm product-detail-button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#productModal"
+                                data-title="{{ item.title }}"
+                                data-category="{{ item.category }}"
+                                data-price="{{ item.price|custom_price }}"
+                                data-description="{{ item.description }}"
+                                data-image="{{ item.image.url }}">
+                            商品詳細
+                        </button>
+                    </div>
+                    <!-- お気に入りボタン -->
+                    {% if user.is_authenticated %}
+                        <button class="btn btn-outline-danger btn-sm favorite-button"
+                                data-slug="{{ item.slug }}"
+                                data-favorited="{{ item.is_favorited|yesno:'true,false' }}">
+                            {% if item.is_favorited %}
+                                ❤️ お気に入り済み
+                            {% else %}
+                                🤍 お気に入り
+                            {% endif %}
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- img-fluid クラスによる画像の可変対応 -->
+<div class="d-flex align-items-center justify-content-center">
+    <a href="{% url 'product' item.slug %}" class="flex-shrink-0">
+        <img src="{{ item.image.url }}" class="d-block img-fluid" alt="{{ item.title }}">
+    </a>
+    <div class="ms-3">
+        <h5 class="mb-2">{{ item.title }}</h5>
+        <p class="text-danger fw-bold">{{ item.price|custom_price }}円</p>
+    </div>
+</div>
+```
+
+
+
 - **エラー時のユーザー体験向上**：フォームエラーを分かりやすく表示
 - **Djangoのベストプラクティス**に基づいたフォルダ構成とクラスベースビュー
 - **本番環境でのJavaScript不具合に対応**：ローカルとRender環境の違いに対応
