@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item, OrderItem, Order, Payment, CarouselItem, CarouselTitle, Favorite
+from .models import Item, OrderItem, Order, Payment, CarouselTitle, Favorite
 
 admin.site.register(Item)
 admin.site.register(CarouselTitle)
