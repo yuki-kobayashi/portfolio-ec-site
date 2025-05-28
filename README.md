@@ -110,7 +110,7 @@ ECサイトに主に必要となる機能を考え、実装する。
 
 
 5.コーディング
-- フロントエンド：HTML, CSS(Bootstrapを利用), JavaScript
+- フロントエンド：HTML、 CSS(Bootstrapを利用)、 JavaScript
 - バックエンド：Python(Django)
 - IDE：VSCode
 
