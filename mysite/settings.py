@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "django.contrib.humanize",
     "django_extensions",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
