@@ -13,7 +13,7 @@ body {
 
 main {
     flex: 1;
-    background-color: #E6E5DB;
+    background-image: url("/images/32499128_m.jpg");
 }
 
 p.item-name {
