@@ -320,7 +320,7 @@ p.item-name {
 
 .cart-icon-left {
     font-size: 48px;
-    color: rgba(255, 0, 0, 0.15);
+    color: rgba(103, 154, 189, 0.4);
     animation: moveCartDown 15s linear infinite;
 }
 
@@ -344,7 +344,7 @@ p.item-name {
 
 .cart-icon-right {
     font-size: 48px;
-    color: rgba(0, 0, 255, 0.15);
+    color: rgba(103, 154, 189, 0.4);
     animation: moveCartUp 15s linear infinite;
 }
 
