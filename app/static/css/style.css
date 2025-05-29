@@ -356,3 +356,34 @@ p.item-name {
         transform: translateY(-110vh);
     }
 }
+
+/* 画面下側のアニメーション(スマホ画面) */
+@media (max-width: 767px) {
+    .cart-animation-left,
+    .cart-animation-right {
+        display: none;
+    }
+
+    .cart-animation-bottom {
+        position: fixed;
+        bottom: 20px;
+        left: -60px;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .cart-icon-bottom {
+        font-size: 48px;
+        color: rgba(103, 154, 189, 0.4);
+        animation: moveCartRight 10s linear infinite;
+    }
+
+    @keyframes moveCartRight {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(110vw);
+        }
+    }
+}
