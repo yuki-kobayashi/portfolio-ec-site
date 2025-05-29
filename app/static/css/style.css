@@ -19,6 +19,14 @@ main {
     background-repeat: no-repeat;
 }
 
+/* スマホ画面では背景画像のごく一部しか表示されないため、背景色に変更 */
+@media (max-width: 768px) {
+    main {
+        background-image: none;
+        background-color: #E6E5DB;
+    }
+}
+
 p.item-name {
     font-weight: bold;
 }
