@@ -241,30 +241,3 @@ def toggle_favorite(request, slug):
         is_favorited = True
 
     return JsonResponse({'is_favorited': is_favorited})
-
-
-# 売上データ(支払いデータ)を集計して返すAPI
-class SalesSummaryView(APIView):
-    def get(self, request):
-        start_date_str = request.query_params.get('start')
-        end_date_str = request.query_params.get('end')
-
-        if not start_date_str or not end_date_str:
-            return Response({"error": "start と end の両方のパラメータが必要です。"}, status=status.HTTP_400_BAD_REQUEST)
-
-        try:
-            start = make_aware(parse_datetime(start_date_str))
-            end = make_aware(parse_datetime(end_date_str))
-        except Exception as e:
-            return Response({"error": "日付の形式が正しくありません。例: 2025-05-01T00:00:00"}, status=status.HTTP_400_BAD_REQUEST)
-
-        payments = Payment.objects.filter(paid_at__range=(start, end))
-        total_amount = sum(p.amount for p in payments)
-
-        serializer = PaymentSerializer(payments, many=True)
-        return Response({
-            "start": start,
-            "end": end,
-            "total_sales": total_amount,
-            "payments": serializer.data
-        })

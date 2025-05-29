@@ -12,5 +12,4 @@ urlpatterns = [
     path("thanks/", views.ThanksView.as_view(), name="thanks"),
     path("search/", views.SearchView.as_view(), name="search"),
     path('toggle-favorite/<slug:slug>/', views.toggle_favorite, name='toggle-favorite'),
-    path('sales-summary/', views.SalesSummaryView.as_view(), name='sales-summary'),
 ]
