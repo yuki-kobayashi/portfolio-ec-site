@@ -309,25 +309,50 @@ p.item-name {
         border-radius: 0.375rem;
 }
 
-.cart-animation-container {
+/* 画面左側のアニメーション */
+.cart-animation-left {
     position: fixed;
-    bottom: 20px;
-    left: -100px;
+    top: -100px;
+    left: 10px;
     z-index: 1;
     pointer-events: none;
 }
 
-.cart-icon {
+.cart-icon-left {
     font-size: 48px;
-    color: rgba(0, 0, 0, 0.1);
-    animation: moveCart 10s linear infinite;
+    color: rgba(255, 0, 0, 0.15);
+    animation: moveCartDown 15s linear infinite;
 }
 
-@keyframes moveCart {
+@keyframes moveCartDown {
     0% {
-        transform: translateX(0);
+        transform: translateY(0);
     }
     100% {
-        transform: translateX(110vw);
+        transform: translateY(110vh);
+    }
+}
+
+/* 画面右側のアニメーション */
+.cart-animation-right {
+    position: fixed;
+    bottom: -100px;
+    right: 10px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.cart-icon-right {
+    font-size: 48px;
+    color: rgba(0, 0, 255, 0.15);
+    animation: moveCartUp 15s linear infinite;
+}
+
+@keyframes moveCartUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-110vh);
     }
 }
