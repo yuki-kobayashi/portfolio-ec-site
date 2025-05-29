@@ -387,3 +387,9 @@ p.item-name {
         }
     }
 }
+
+@media (min-width: 768px) {
+    .cart-animation-bottom {
+        display: none;
+    }
+}
