@@ -308,3 +308,26 @@ p.item-name {
         line-height: 1.5;
         border-radius: 0.375rem;
 }
+
+.cart-animation-container {
+    position: fixed;
+    bottom: 20px;
+    left: -100px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.cart-icon {
+    font-size: 48px;
+    color: rgba(0, 0, 0, 0.1);
+    animation: moveCart 10s linear infinite;
+}
+
+@keyframes moveCart {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(110vw);
+    }
+}
