@@ -3,11 +3,11 @@
 
 {% block content %}
 
-<div class="card card-auth my-5 mx-auto">
+<div class="card card-auth my-5 mx-auto login-card">
     <div class="card-body">
-        <h5 class="card-title text-center">ログイン</h5>
+        <h5 class="card-title text-center login-title">ログイン</h5>
 
-         <!-- 認証失敗エラー表示 -->
+        <!-- 認証失敗エラー表示 -->
         {% if form.non_field_errors %}
             <div class="alert alert-danger text-center">
                 {{ form.non_field_errors.0 }}
@@ -17,13 +17,13 @@
         <form method="post" class="form-auth">
             {% csrf_token %}
             <div class="form-label-group">
-                {% render_field form.login class='form-control' placeholder='メールアドレス' %}
+                {% render_field form.login class='form-control login-input' placeholder='メールアドレス' %}
             </div>
             <div class="form-label-group">
-                {% render_field form.password class='form-control' placeholder='パスワード' %}
+                {% render_field form.password class='form-control login-input' placeholder='パスワード' %}
             </div>
             <div class="button mx-auto">
-                <button class="btn btn-lg btn-primary btn-block mx-auto" type="submit">ログイン</button>
+                <button class="btn btn-lg btn-login btn-block mx-auto" type="submit">ログイン</button>
             </div>
         </form>
     </div>
