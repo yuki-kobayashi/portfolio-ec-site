@@ -7,7 +7,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from accounts.models import CustomUser
-from .serializers import PaymentSerializer
 from .models import Item, OrderItem, Order, Payment, CarouselTitle, Favorite
 
 
