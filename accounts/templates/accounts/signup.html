@@ -22,7 +22,7 @@
             </div>
             <div class="form-label-group">
                 {% render_field form.password1 class='form-control' placeholder='パスワード' %}
-                <span class="password-toggle" onclick="togglePassword('id_password1', this)">
+                <span class="password-toggle" data-target="id_password1">
                     <i class="fa fa-eye"></i>
                 </span>
                 {% if form.password1.errors %}
@@ -36,7 +36,7 @@
             </div>
             <div class="form-label-group">
                 {% render_field form.password2 class='form-control' placeholder='パスワード(確認)' %}
-                <span class="password-toggle" onclick="togglePassword('id_password2', this)">
+                <span class="password-toggle" data-target="id_password2">
                     <i class="fa fa-eye"></i>
                 </span>
                 {% if form.password2.errors %}
