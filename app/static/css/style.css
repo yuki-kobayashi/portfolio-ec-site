@@ -403,9 +403,9 @@ p.item-name {
 /* パスワード表示切り替えアイコンのスタイル */
 .password-toggle {
     position: absolute;
-    top: 50%;
     right: 16px;
-    transform: translateY(-50%);
+    top: 1.8rem;
+    transform: none;
     cursor: pointer;
     color: #888;
     font-size: 1.2rem;

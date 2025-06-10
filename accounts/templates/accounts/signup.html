@@ -41,6 +41,8 @@
                     <div class="text-danger small mt-1">
                         {{ form.password2.errors.0 }}
                     </div>
+                {% else %}
+                    <small class="form-text invisible d-block mt-2">　</small>
                 {% endif %}
             </div>
             <div class="button mx-auto">
