@@ -413,3 +413,7 @@ p.item-name {
     z-index: 2;
     pointer-events: all;
 }
+
+.form-label-group input.form-control {
+    width: 100%;
+}
