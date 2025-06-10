@@ -404,7 +404,7 @@ p.item-name {
 .password-toggle {
     position: absolute;
     right: 16px;
-    top: 1.8rem;
+    top: 0.6rem;
     transform: none;
     cursor: pointer;
     color: #888;
