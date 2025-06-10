@@ -21,6 +21,9 @@
             </div>
             <div class="form-label-group">
                 {% render_field form.password class='form-control' placeholder='パスワード' %}
+                <span class="password-toggle" onclick="togglePassword('id_password', this)">
+                    <i class="fa fa-eye"></i>
+                </span>
             </div>
             <div class="button mx-auto">
                 <button class="btn btn-lg btn-primary btn-block mx-auto" type="submit">ログイン</button>

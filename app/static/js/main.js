@@ -69,6 +69,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // パスワード表示・非表示の切り替え
+    const passwordToggles = document.querySelectorAll('.password-toggle');
+    passwordToggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+            const icon = toggle.querySelector('i');
+            const inputId = toggle.getAttribute('data-target');
+            const input = document.getElementById(inputId);
+            if (input) {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            }
+        });
+    });
+
+    // CSRFトークン取得
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
