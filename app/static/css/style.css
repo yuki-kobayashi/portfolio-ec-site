@@ -100,13 +100,24 @@ p.item-name {
 }
 
 .form-label-group {
-    margin-bottom: 1rem;
     position: relative;
+    width: 100%;
 }
 
 .form-label-group input {
     border-radius: 2rem;
     padding-right: 48px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-label-group .form-text {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
 }
 
 .form-group {
@@ -412,8 +423,4 @@ p.item-name {
     line-height: 1;
     z-index: 2;
     pointer-events: all;
-}
-
-.form-label-group input.form-control {
-    width: 100%;
 }
