@@ -46,6 +46,10 @@ p.item-name {
     justify-content: center;
 }
 
+.button .mx-auto .login {
+    margin-top: 14px;
+}
+
 .btn-block {
     width: 100%;
 }
@@ -101,7 +105,8 @@ p.item-name {
 }
 
 .form-label-group {
-    width: 100%;
+    width: 60%;
+    margin-top: 14px;
 }
 
 .form-label-group .form-control {
