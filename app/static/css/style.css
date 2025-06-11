@@ -46,7 +46,7 @@ p.item-name {
     justify-content: center;
 }
 
-.button .mx-auto .login {
+.button.mx-auto.login {
     margin-top: 14px;
 }
 
@@ -107,6 +107,7 @@ p.item-name {
 .form-label-group {
     width: 60%;
     margin-top: 14px;
+    position: relative;
 }
 
 .form-label-group .form-control {
@@ -310,6 +311,12 @@ p.item-name {
         flex-wrap: wrap;
         gap: 15px;
     }
+
+    .form-label-group {
+    width: 100%;
+    margin-top: 14px;
+    position: relative;
+}
 }
 
 /* お気に入りボタンスタイル(商品一覧) */
