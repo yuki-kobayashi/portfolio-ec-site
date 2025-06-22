@@ -31,7 +31,6 @@ class IndexView(View):
 
         context = {
             "item_data": item_data,
-
             "carousel_data": carousel_data,
             "carousel_title": carousel_title,
             "categories": categories,
@@ -145,7 +144,7 @@ class PaymentView(LoginRequiredMixin, View):
 
         # 支払い処理
         payment = Payment(user=request.user)
-        payment.stripe_charge_id = "test_stripe_charge_id"
+        payment.stripe_charge_id = "test_stripe_charge_id" # stripeを利用した決済処理は安全面を考慮し実装せず
         payment.amount = amount
         payment.save()
 
@@ -238,5 +237,5 @@ def toggle_favorite(request, slug):
         is_favorited = False
     else:
         is_favorited = True
-
+    # JSON形式で返すことで、JavaScriptから非同期で処理させる(Ajax)
     return JsonResponse({'is_favorited': is_favorited})
