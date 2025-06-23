@@ -240,6 +240,13 @@ p.item-name {
     width: 200px;
 }
 
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
 /* 検索フォームのスタイル */
 .search-form {
     margin-top: 37px;
@@ -297,11 +304,11 @@ p.item-name {
 /* スマホ画面専用スタイル */
 @media (max-width: 768px) {
     #customCarousel {
-        margin: 0 auto; /* スマホでは上の余白を削除 */
+        margin: 0 auto;
     }
 
     .mb-5 {
-        margin-bottom: 0 !important; /* スマホではマージンを削除 */
+        margin-bottom: 0 !important;
     }
 
     .navbar-nav {
@@ -313,10 +320,15 @@ p.item-name {
     }
 
     .form-label-group {
-    width: 100%;
-    margin-top: 14px;
-    position: relative;
-}
+        width: 100%;
+        margin-top: 14px;
+        position: relative;
+    }
+
+    .button-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 /* お気に入りボタンスタイル(商品一覧) */
