@@ -36,6 +36,7 @@
                         <button class="btn btn-warning" type="submit" style="margin-bottom: 1rem">
                             注文を確定する
                         </button>
+                        <a href="{% url 'order' %}" class="btn btn-primary"  style="margin-bottom: 1rem">ショッピングカートに戻る</a>
                         <p class="item-name">注文内容</p>
                         <p>商品の小計：{{ order.get_total|custom_price }}円</p>
                         <p>配送料：0円</p>
