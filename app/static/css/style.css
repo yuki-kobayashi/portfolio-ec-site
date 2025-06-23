@@ -19,12 +19,11 @@ main {
     background-repeat: no-repeat;
 }
 
-/* スマホ画面では背景画像のごく一部しか表示されないため、背景色に変更 */
-@media (max-width: 768px) {
-    main {
-        background-image: none;
-        background-color: #E6E5DB;
-    }
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 p.item-name {
@@ -287,38 +286,6 @@ p.item-name {
     cursor: pointer;
 }
 
-/* PC画面専用スタイル */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1400px !important;
-    }
-}
-
-/* スマホ画面専用スタイル */
-@media (max-width: 768px) {
-    #customCarousel {
-        margin: 0 auto; /* スマホでは上の余白を削除 */
-    }
-
-    .mb-5 {
-        margin-bottom: 0 !important; /* スマホではマージンを削除 */
-    }
-
-    .navbar-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: flex-start !important;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .form-label-group {
-    width: 100%;
-    margin-top: 14px;
-    position: relative;
-}
-}
-
 /* お気に入りボタンスタイル(商品一覧) */
 .favorite-button {
     position: relative;
@@ -386,8 +353,64 @@ p.item-name {
     }
 }
 
-/* 画面下側のアニメーション(スマホ画面) */
-@media (max-width: 767px) {
+/* パスワード表示切り替えアイコンのスタイル */
+.password-toggle {
+    position: absolute;
+    right: 16px;
+    top: 9px;
+    transform: none;
+    cursor: pointer;
+    color: #888;
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* PC画面専用スタイル */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px !important;
+    }
+}
+
+/* スマホ画面専用スタイル */
+@media (max-width: 768px) {
+    main {
+        background-image: none;
+        background-color: #E6E5DB;
+    }
+
+    #customCarousel {
+        margin: 0 auto;
+    }
+
+    .mb-5 {
+        margin-bottom: 0 !important;
+    }
+
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .form-label-group {
+        width: 100%;
+        margin-top: 14px;
+        position: relative;
+    }
+
+    .button-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cart-animation-bottom {
+        display: none;
+    }
+
+    /* 画面下側のアニメーション(スマホ画面) */
     .cart-animation-left,
     .cart-animation-right {
         display: none;
@@ -415,22 +438,4 @@ p.item-name {
             transform: translateX(110vw);
         }
     }
-}
-
-@media (min-width: 768px) {
-    .cart-animation-bottom {
-        display: none;
-    }
-}
-
-/* パスワード表示切り替えアイコンのスタイル */
-.password-toggle {
-    position: absolute;
-    right: 16px;
-    top: 9px;
-    transform: none;
-    cursor: pointer;
-    color: #888;
-    font-size: 18px;
-    line-height: 1;
 }

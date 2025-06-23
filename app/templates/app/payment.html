@@ -33,10 +33,14 @@
             <div class="card">
                 <div class="card-body text-center px-2 py-3">
                     <div class="mb-3">
-                        <button class="btn btn-warning" type="submit" style="margin-bottom: 1rem">
-                            注文を確定する
-                        </button>
-                        <a href="{% url 'order' %}" class="btn btn-primary"  style="margin-bottom: 1rem">ショッピングカートに戻る</a>
+                        <div class="button-wrapper mb-3">
+                            <button class="btn btn-warning" type="submit" style="margin-bottom: 1rem">
+                                注文を確定する
+                            </button>
+                            <a href="{% url 'order' %}" class="btn btn-primary" style="margin-bottom: 1rem">
+                                ショッピングカートに戻る
+                            </a>
+                        </div>
                         <p class="item-name">注文内容</p>
                         <p>商品の小計：{{ order.get_total|custom_price }}円</p>
                         <p>配送料：0円</p>
