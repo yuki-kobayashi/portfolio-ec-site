@@ -22,7 +22,7 @@ class CarouselTitle(models.Model):
 
 
 class OrderItem(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) # 関連するユーザーが削除されたら、このモデルのデータも一緒に削除
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
@@ -57,7 +57,7 @@ class Order(models.Model):
 
 class Payment(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True # 関連するユーザーが削除されても、このデータ自体は残す
     )
     amount = models.IntegerField()
     timestamp = models.DateTimeField(auto_now_add=True)

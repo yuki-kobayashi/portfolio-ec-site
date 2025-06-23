@@ -144,7 +144,6 @@ class PaymentView(LoginRequiredMixin, View):
 
         # 支払い処理
         payment = Payment(user=request.user)
-        payment.stripe_charge_id = "test_stripe_charge_id" # stripeを利用した決済処理は安全面を考慮し実装せず
         payment.amount = amount
         payment.save()
 
