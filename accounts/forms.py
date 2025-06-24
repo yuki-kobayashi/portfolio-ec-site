@@ -15,7 +15,7 @@ class ProfileForm(forms.Form):
     tel = forms.CharField(max_length=30, label="電話番号", required=False)
 
 
-class SignupUserForm(SignupForm):
+class SignupUserForm(SignupForm): # django-allauthのSignupFormを継承
     # オリジナルフォームのフィールド定義
     first_name = forms.CharField(max_length=30, label="性")
     last_name = forms.CharField(max_length=30, label="名")
@@ -42,7 +42,7 @@ class SignupUserForm(SignupForm):
         user.save()
         return user
     
-class CustomAuthenticationForm(AuthenticationForm):
+class CustomAuthenticationForm(AuthenticationForm): # AuthenticationForm：Django標準のログインフォーム
     error_messages = {
         'invalid_login': ("メールアドレスまたはパスワードが正しくありません。"),
     }
