@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // パスワード表示・非表示の切り替え
     const passwordToggles = document.querySelectorAll('.password-toggle');
+    // パスワード入力欄が二つあるためループを入れる
     passwordToggles.forEach(function(toggle) {
         toggle.addEventListener('click', function() {
             const icon = toggle.querySelector('i');
