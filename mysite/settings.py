@@ -40,14 +40,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
+    'django.contrib.sitemaps',
+    "django.contrib.sites",
     "widget_tweaks",
     "app",
     "accounts",
-    "django.contrib.sites",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "django.contrib.humanize",
     "django_extensions",
 ]
 
