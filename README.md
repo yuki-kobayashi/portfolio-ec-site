@@ -40,6 +40,7 @@ Django + BootstrapによるシンプルなECサイトです。ユーザー登録
 - バージョン管理：GitHub
 - 画像ストレージ：AWS S3
 - 開発環境：Windows11 / VSCode
+- その他使用ツール：Google Analytics 4(GA4)
 
 ---
 
@@ -300,5 +301,26 @@ MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
     }
 }
 ```
+- **Google Analytics 4(GA4)の導入**：測定IDの発行から全ページへのトラッキングコード埋め込みまでを実施。ユーザーのアクセス状況やページビュー数を取得できる環境を構築し、基本的なユーザー行動の可視化を可能にした。
+```html
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>ポートフォリオ用ECサイト</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VC7RLPK5M"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3VC7RLPK5M');
+    </script>
+</head>
+```
+![GA4](./ec_site_ga4.png)
 
 ---
