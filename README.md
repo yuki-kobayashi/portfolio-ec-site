@@ -40,7 +40,7 @@ Django + BootstrapによるシンプルなECサイトです。ユーザー登録
 - バージョン管理：GitHub
 - 画像ストレージ：AWS S3
 - 開発環境：Windows11 / VSCode
-- その他使用ツール：Google Analytics 4(GA4)
+- その他使用ツール：Google Analytics 4(GA4) / Google Search Console(GSC)
 
 ---
 
@@ -321,6 +321,21 @@ MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
     </script>
 </head>
 ```
-![GA4](./ec_site_ga4.png)
+![GA4](./ec_site_ga4.png)  
+- **Google Search Console(GSC)の連携**：サイト所有権の確認と、商品ページのsitemapの生成・登録までを実施。SEOに配慮し、検索エンジンによるページのクロールを促進。
+```python
+class ItemSitemap(Sitemap):
+    changefreq = "weekly" # 週に1回程度の更新を予定
+    priority = 0.8 # 画面の重要度(最大 1.0)
+
+    # sitemapに載せるアイテム(URL)のリストを返す
+    def items(self):
+        return Item.objects.all()
+
+    # sitemap.xmlに書かれる各URLを生成
+    def location(self, obj):
+        return reverse('product', args=[obj.slug])
+```
+![GSC](./ec_site_GSC.png)  
 
 ---
