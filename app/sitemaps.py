@@ -2,6 +2,7 @@
 from django.contrib.sitemaps import Sitemap
 from .models import Item
 from django.urls import reverse
+from django.contrib.sites.models import Site
 
 # Sitemapクラスを継承したカスタムサイトマップクラス
 class ItemSitemap(Sitemap):
@@ -15,3 +16,9 @@ class ItemSitemap(Sitemap):
     # sitemap.xmlに書かれる各URLを生成
     def location(self, obj):
         return reverse('product', args=[obj.slug])
+    
+    def get_urls(self, site=None, **kwargs):
+        if site is None:
+            # ドメインを指定
+            site = Site(domain="portfolio-ec-site.onrender.com", name="portfolio-ec-site")
+        return super().get_urls(site=site, **kwargs)
