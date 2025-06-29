@@ -336,6 +336,6 @@ class ItemSitemap(Sitemap):
     def location(self, obj):
         return reverse('product', args=[obj.slug])
 ```
-![GSC](./ec_site_GSC.png)  
+![GSC](./ec_site_gsc.png)  
 
 ---
