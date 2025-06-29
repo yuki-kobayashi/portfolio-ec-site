@@ -276,6 +276,7 @@ AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 ```
+![S3](./ec_site_s3.png)  
 - **アニメーションの導入**：CSSアニメーションを活用し、ショッピングカートのアイコンが画面左右や下部を動く動的な演出を実装。ユーザーの印象に残るUXを実現。
 ```css
 .cart-animation-left {
