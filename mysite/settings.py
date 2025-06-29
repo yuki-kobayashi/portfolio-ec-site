@@ -60,6 +60,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     # "allauth.account.middleware.AccountMiddleware",
 ]
 
@@ -135,7 +136,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, "app", "static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "app", "static")]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
@@ -149,7 +150,6 @@ if os.environ.get("RENDER"):
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SITE_ID = 1
-SITE_DOMAIN = "portfolio-ec-site.onrender.com"
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 ACCOUNT_EMAIL_VERIFICATION = "none"
