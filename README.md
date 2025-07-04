@@ -83,7 +83,7 @@ ECサイトに主に必要となる機能を考え、実装する。
 
 3.データベース設計
 
-このアプリでは、ユーザー管理・商品管理・注文処理・お気に入り機能など、ECサイトに必要な情報を扱うため、以下のようなデータベース設計を行った(本番環境ではPostgreSQLを使用)。
+ユーザー管理・商品管理・注文処理・お気に入り機能など、ECサイトに必要な情報を扱うため、以下のようなデータベース設計を行った(本番環境ではPostgreSQLを使用)。
 
 🔑 ユーザーモデル(CustomUser)
 - Django標準のユーザーモデルを拡張し、メールアドレスをログインIDとして使用。
@@ -260,24 +260,6 @@ class SignupUserForm(SignupForm):
     </div>
 </div>
 ```
-- **AWSとの連携**：商品画像をAWS S3にアップロード・保存し、Webサイト上に表示。(本番環境では、下記をRenderの環境変数に設定することで動かしている。)
-```python
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME', 'ap-northeast-1')
-AWS_S3_CUSTOM_DOMAIN = os.getenv('AWS_S3_CUSTOM_DOMAIN', f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com")
-
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-
-AWS_DEFAULT_ACL = None
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
-```
-![S3](./ec_site_s3.png)  
 - **アニメーションの導入**：CSSアニメーションを活用し、ショッピングカートのアイコンが画面左右や下部を動く動的な演出を実装。ユーザーの印象に残るUXを実現。
 ```css
 .cart-animation-left {
@@ -303,6 +285,24 @@ MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
     }
 }
 ```
+- **AWSとの連携**：商品画像をAWS S3にアップロード・保存し、Webサイト上に表示。(本番環境では、下記をRenderの環境変数に設定することで動かしている。)
+```python
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME', 'ap-northeast-1')
+AWS_S3_CUSTOM_DOMAIN = os.getenv('AWS_S3_CUSTOM_DOMAIN', f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com")
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
+```
+![S3](./ec_site_s3.png)  
 - **Google Analytics 4(GA4)の導入**：測定IDの発行から全ページへのトラッキングコード埋め込みまでを実施。ユーザーのアクセス状況やページビュー数を取得できる環境を構築し、ユーザー行動の可視化を可能にした。
 ```html
 <head>
