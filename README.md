@@ -35,12 +35,13 @@ Django + BootstrapによるシンプルなECサイトです。ユーザー登録
 - 言語：Python 3.13.3
 - フレームワーク：Django 5.2.1
 - フロントエンド：HTML5 / CSS3 / Bootstrap 5.3.3 / JavaScript / jQuery
+- データベース：PostgreSQL(Render提供のデータベースを使用)
 - デプロイ：Render
 - 認証：django-allauth
 - バージョン管理：GitHub
 - 画像ストレージ：AWS S3
 - 開発環境：Windows11 / VSCode
-- その他使用ツール：Google Analytics 4(GA4) / Google Search Console(GSC)
+- その他使用ツール：Google Analytics 4(GA4) / Google Search Console(GSC) / DBeaver(RenderではWeb UIなどを使って直接データベースを開く機能が無いため)
 
 ---
 
